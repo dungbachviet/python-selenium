@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 import time
 import os
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.ui import Select
+
 
 
 def print_tag_info(html_tag: WebElement):
@@ -22,6 +24,7 @@ driver.get(html_file_path)
 # 3.2. FILLING IN FORMS
 print("\n\n3.2. FILLING IN FORMS")
 
+# ===== Way1: Using XPath to get select tag
 select_tag = driver.find_element(By.XPATH, "//select[@name='cars']")
 all_option_tags = select_tag.find_elements(By.TAG_NAME, "option")
 for option_tag in all_option_tags:
@@ -29,6 +32,28 @@ for option_tag in all_option_tags:
     print("Wait 1s to click other option ...")
     time.sleep(1)
     option_tag.click()
+
+# ===== Way2: Using Select object to interact with <select> tag
+time.sleep(2)
+select = Select(driver.find_element(By.ID, 'cars'))
+# Deselect all options inside <select> tag
+select.deselect_all()
+# select <option> tag at index 1, 2 (inside of <select> tag)
+select.select_by_index(1)
+select.select_by_index(2)
+
+# Get all selected options
+all_selected_options = select.all_selected_options
+print("all_selected_options = ", all_selected_options)
+
+# Get all options (inside <select> tag)
+options = select.options
+print("all options inside <select> = ", options)
+
+# Click Submit button
+time.sleep(2)
+driver.find_element(By.ID, "submit").click()
+driver.find_element(By.ID, "submit").submit()
 
 # ======== Sleep 10s before closing this browser
 time.sleep(10)

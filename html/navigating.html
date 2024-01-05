@@ -7,18 +7,22 @@
 </head>
 <body>
 
-    <h1>Username/Password</h1>
-    <input type="text" name="username" id="username-id" />
-    <input type="text" name="passwd" id="passwd-id" />
+    <form>
+        <h1>Username/Password</h1>
+        <input type="text" name="username" id="username-id" />
+        <input type="text" name="passwd" id="passwd-id" />
 
-    <h1>Select Dropdown Example</h1>
-    <label for="cars">Choose a car:</label>
-    <select id="cars" name="cars">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-    </select>
+        <h1>Select Dropdown Example</h1>
+        <label for="cars">Choose a car:</label>
+        <select id="cars" name="cars" multiple>
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+        </select>
+
+        <input type="submit" value="Submit" id="submit">
+    </form>
 
 </body>
 </html>
